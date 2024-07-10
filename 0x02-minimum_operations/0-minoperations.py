@@ -33,7 +33,7 @@ def minOperations(n: int) -> int:
             print(2)
             char = char + copy
             count += 1
-        elif len(copy) + len(char) > n: #        elif len(copy) + len(char) > n or len(char) * 2 > n:
+        elif len(copy) + len(char) > n:
             return 0
         else:
             copy = char
