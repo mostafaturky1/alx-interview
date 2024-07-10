@@ -1,0 +1,41 @@
+#!/usr/bin/python3
+"""
+file import
+"""
+
+
+def minOperations(n):
+    """
+    This function calculates the minimum number of operations
+    required to generate a string of length n.
+    The operations involve appending a character
+    ('1', '2', or '3') to the current string and then appending
+    the reversed copy of the current string to itself.
+
+    Parameters:
+    n (int): The desired length of the final string.
+
+    Returns:
+    int: The minimum number of operations required
+    to generate a string of length n.
+    """
+    if n == 0:
+        return 0
+    char = "H"
+    copy = ""
+    count = 0
+    while len(char) < n:
+        if len(char) % 2 == 0:
+            print(char + "1")
+            char = char + copy
+            count += 1
+        elif len(copy) + len(char) == n:
+            print(char + "2")
+            char = char + copy
+            count += 1
+        else:
+            print(char + "3")
+            copy = char
+            char = char + copy
+            count += 2
+    return count
