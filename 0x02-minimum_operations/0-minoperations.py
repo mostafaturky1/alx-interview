@@ -28,9 +28,11 @@ def minOperations(n):
         if len(char) % 2 == 0:
             char = char + copy
             count += 1
-        elif len(copy) + len(char) >= n:
+        elif len(copy) + len(char) == n:
             char = char + copy
             count += 1
+        elif len(copy) + len(char) > n:
+            return 0
         else:
             copy = char
             char = char + copy
