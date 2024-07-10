@@ -4,7 +4,7 @@ file import
 """
 
 
-def minOperations(n):
+def minOperations(n: int) -> int:
     """
     This function calculates the minimum number of operations
     required to generate a string of length n.
