@@ -26,15 +26,12 @@ def minOperations(n):
     count = 0
     while len(char) < n:
         if len(char) % 2 == 0:
-            print(char + "1")
             char = char + copy
             count += 1
-        elif len(copy) + len(char) == n:
-            print(char + "2")
+        elif len(copy) + len(char) >= n:
             char = char + copy
             count += 1
         else:
-            print(char + "3")
             copy = char
             char = char + copy
             count += 2
