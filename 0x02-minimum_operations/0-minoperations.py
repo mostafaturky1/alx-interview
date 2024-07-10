@@ -28,16 +28,13 @@ def minOperations(n: int) -> int:
         if len(char) % 2 == 0:
             char = char + copy
             count += 1
-            print(char + ' ' + copy + '1')
         elif len(copy) + len(char) == n:
-            print(2)
             char = char + copy
             count += 1
-        elif len(copy) + len(char) > n:
+        elif len(copy) + len(char) > n: #        elif len(copy) + len(char) > n or len(char) * 2 > n:
             return 0
         else:
             copy = char
             char = char + copy
             count += 2
-            print(char + ' ' + copy + '3')
     return count
