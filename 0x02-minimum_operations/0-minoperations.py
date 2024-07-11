@@ -1,40 +1,35 @@
 #!/usr/bin/python3
-"""
-file import
-"""
+'''The minimum operations coding challenge.
+'''
 
 
-def minOperations(n: int) -> int:
-    """
-    This function calculates the minimum number of operations
-    required to generate a string of length n.
-    The operations involve appending a character
-    ('1', '2', or '3') to the current string and then appending
-    the reversed copy of the current string to itself.
-
-    Parameters:
-    n (int): The desired length of the final string.
-
-    Returns:
-    int: The minimum number of operations required
-    to generate a string of length n.
-    """
-    if n == 0:
+def minOperations(n):
+    '''Computes the fewest number of operations needed to result
+    in exactly n H characters.
+    '''
+    if not isinstance(n, int):
         return 0
-    char = "H"
-    copy = ""
-    count = 0
-    while len(char) < n:
-        if len(char) % 2 == 0:
-            char = char + copy
-            count += 1
-        elif len(copy) + len(char) == n:
-            char = char + copy
-            count += 1
-        elif len(copy) + len(char) > n or len(char) * 2 > n:
-            return 0
-        else:
-            copy = char
-            char = char + copy
-            count += 2
-    return count
+    ops_count = 0
+    clipboard = 0
+    done = 1
+    # print('H', end='')
+    while done < n:
+        if clipboard == 0:
+            # init (the first copy all and paste)
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+            # print('-(11)->{}'.format('H' * done), end='')
+        elif n - done > 0 and (n - done) % done == 0:
+            # copy all and paste
+            clipboard = done
+            done += clipboard
+            ops_count += 2
+            # print('-(11)->{}'.format('H' * done), end='')
+        elif clipboard > 0:
+            # paste
+            done += clipboard
+            ops_count += 1
+            # print('-(01)->{}'.format('H' * done), end='')
+    # print('')
+    return ops_count
